@@ -15,9 +15,21 @@ export interface GameProgress {
   sessions: SessionRecord[]
 }
 
+export interface StudyEntry {
+  date: string // YYYY-MM-DD
+  minutes: number
+  assunto?: string
+}
+
+export interface StudyState {
+  goalMinutes: number // meta semanal
+  entries: StudyEntry[]
+}
+
 export interface AppState {
   games: Record<GameId, GameProgress>
   streak: { count: number; last: string }
+  study: StudyState
 }
 
 const emptyGame = (): GameProgress => ({ level: 1, xp: 0, best: 0, sessions: [] })
@@ -25,6 +37,7 @@ const emptyGame = (): GameProgress => ({ level: 1, xp: 0, best: 0, sessions: [] 
 const emptyState = (): AppState => ({
   games: Object.fromEntries(GAMES.map((g) => [g.id, emptyGame()])) as Record<GameId, GameProgress>,
   streak: { count: 0, last: '' },
+  study: { goalMinutes: 300, entries: [] }, // 5h/semana por padrão
 })
 
 /** Data local no formato YYYY-MM-DD */
@@ -46,6 +59,7 @@ export function loadState(): AppState {
     return {
       streak: parsed.streak ?? base.streak,
       games: { ...base.games, ...parsed.games },
+      study: parsed.study ?? base.study,
     }
   } catch {
     return emptyState()
@@ -137,6 +151,50 @@ export function recordSession(gameId: GameId, score: number, total: number): Ses
 
 export const totalXp = (state: AppState): number =>
   Object.values(state.games).reduce((sum, g) => sum + g.xp, 0)
+
+// ---------------------------------------------------------------- meta de estudo
+
+/** Segunda-feira da semana atual, no formato YYYY-MM-DD (local). */
+export function weekStart(): string {
+  const d = new Date()
+  const day = (d.getDay() + 6) % 7 // 0 = segunda
+  return new Date(d.getFullYear(), d.getMonth(), d.getDate() - day).toLocaleDateString('sv')
+}
+
+export const studyThisWeek = (state: AppState): number => {
+  const start = weekStart()
+  return state.study.entries.filter((e) => e.date >= start).reduce((s, e) => s + e.minutes, 0)
+}
+
+export function addStudyEntry(minutes: number, assunto?: string): AppState {
+  const state = loadState()
+  state.study.entries.push({ date: today(), minutes, assunto: assunto?.trim() || undefined })
+  if (state.study.entries.length > 400) state.study.entries = state.study.entries.slice(-400)
+  save(state)
+  return state
+}
+
+export function removeLastStudyEntry(): AppState {
+  const state = loadState()
+  state.study.entries.pop()
+  save(state)
+  return state
+}
+
+export function setStudyGoal(goalMinutes: number): AppState {
+  const state = loadState()
+  state.study.goalMinutes = Math.max(30, Math.min(goalMinutes, 3000))
+  save(state)
+  return state
+}
+
+/** Formata minutos como "5h", "2h30" ou "45min". */
+export function fmtMinutes(m: number): string {
+  const h = Math.floor(m / 60)
+  const rest = m % 60
+  if (h === 0) return `${rest}min`
+  return rest === 0 ? `${h}h` : `${h}h${String(rest).padStart(2, '0')}`
+}
 
 export function resetProgress() {
   const key = storageKey()

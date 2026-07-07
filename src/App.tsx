@@ -1,5 +1,7 @@
 import { useMemo, useState } from 'react'
 import QuizEngine from './components/QuizEngine'
+import ScienceScreen from './components/ScienceScreen'
+import StudyScreen from './components/StudyScreen'
 import MemoryGame from './games/memory/MemoryGame'
 import NBackGame from './games/nback/NBackGame'
 import StroopGame from './games/stroop/StroopGame'
@@ -10,11 +12,13 @@ import { buildMatricesQuiz } from './games/matrices/generator'
 import { buildCalcQuiz } from './games/calc/generator'
 import { GAMES, gameInfo, type GameId, type QuizQuestion } from './games/types'
 import {
+  fmtMinutes,
   gameQi,
   loadState,
   overallQi,
   recordSession,
   resetProgress,
+  studyThisWeek,
   totalXp,
   type SessionResult,
 } from './state/progress'
@@ -36,6 +40,8 @@ type Screen =
   | { name: 'game'; id: GameId; runKey: number }
   | { name: 'result'; id: GameId; result: SessionResult }
   | { name: 'stats' }
+  | { name: 'science' }
+  | { name: 'study' }
 
 const QUIZ_BUILDERS: Partial<Record<GameId, (level: number) => QuizQuestion[]>> = {
   critical: buildCriticalQuiz,
@@ -85,6 +91,8 @@ export default function App() {
           onPlay={startGame}
           onStats={() => setScreen({ name: 'stats' })}
           onProfiles={() => setScreen({ name: 'profiles' })}
+          onScience={() => setScreen({ name: 'science' })}
+          onStudy={() => setScreen({ name: 'study' })}
         />
       )
     case 'game':
@@ -106,7 +114,26 @@ export default function App() {
         />
       )
     case 'stats':
-      return <Stats onBack={() => setScreen({ name: 'home' })} />
+      return (
+        <Stats
+          onBack={() => setScreen({ name: 'home' })}
+          onScience={() => setScreen({ name: 'science' })}
+        />
+      )
+    case 'science':
+      return (
+        <ScienceScreen
+          onBack={() => setScreen({ name: 'home' })}
+          onStudy={() => setScreen({ name: 'study' })}
+        />
+      )
+    case 'study':
+      return (
+        <StudyScreen
+          onBack={() => setScreen({ name: 'home' })}
+          onScience={() => setScreen({ name: 'science' })}
+        />
+      )
   }
 }
 
@@ -298,15 +325,21 @@ function Home({
   onPlay,
   onStats,
   onProfiles,
+  onScience,
+  onStudy,
 }: {
   onPlay: (id: GameId) => void
   onStats: () => void
   onProfiles: () => void
+  onScience: () => void
+  onStudy: () => void
 }) {
   const state = useMemo(loadState, [])
   const profile = activeProfile()
   const qi = overallQi(state)
   const played = Object.values(state.games).filter((g) => g.sessions.length > 0).length
+  const studyDone = studyThisWeek(state)
+  const studyPct = Math.min(100, Math.round((studyDone / state.study.goalMinutes) * 100))
 
   return (
     <div className="screen">
@@ -334,6 +367,26 @@ function Home({
             Treine os {GAMES.length} jogos para uma estimativa completa ({played}/{GAMES.length})
           </p>
         )}
+        <p className="qi-hint qi-honest">Estimativa de treino — não é um teste clínico</p>
+      </button>
+
+      <button className="study-card" onClick={onStudy}>
+        <span className="game-emoji">🎓</span>
+        <span className="game-text">
+          <strong>Meta semanal de estudo</strong>
+          <small>
+            {studyDone > 0
+              ? `${fmtMinutes(studyDone)} de ${fmtMinutes(state.study.goalMinutes)} esta semana`
+              : `Estudar é o que mais aumenta o QI — meta: ${fmtMinutes(state.study.goalMinutes)}/semana`}
+          </small>
+          <span className="game-bar">
+            <span
+              className="game-bar-fill study-fill"
+              style={{ width: `${studyPct}%` }}
+            />
+          </span>
+        </span>
+        <span className="game-level">{studyPct}%</span>
       </button>
 
       <div className="game-list">
@@ -366,9 +419,12 @@ function Home({
         })}
       </div>
 
-      <footer className="home-footer">
+      <footer className="home-footer home-footer-row">
         <button className="btn ghost" onClick={onStats}>
           📊 Meu progresso
+        </button>
+        <button className="btn ghost" onClick={onScience}>
+          🔬 A ciência
         </button>
       </footer>
     </div>
@@ -484,7 +540,7 @@ function ResultScreen({
 
 // ---------------------------------------------------------------- Estatísticas
 
-function Stats({ onBack }: { onBack: () => void }) {
+function Stats({ onBack, onScience }: { onBack: () => void; onScience: () => void }) {
   const [state, setState] = useState(loadState)
   const profile = activeProfile()
 
@@ -558,7 +614,10 @@ function Stats({ onBack }: { onBack: () => void }) {
 
       <p className="qi-disclaimer">
         O QI estimado reflete seu progresso nos jogos deste app (escala 80–200) e não substitui um
-        teste psicométrico aplicado por profissionais.
+        teste psicométrico aplicado por profissionais.{' '}
+        <button className="link-btn" onClick={onScience}>
+          Entenda a ciência
+        </button>
       </p>
 
       <footer className="home-footer">
