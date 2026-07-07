@@ -29,9 +29,11 @@ export function randInt(min: number, max: number): number {
  * Monta uma sessão a partir do banco: sorteia `count` questões do tier
  * correspondente ao nível (completando com tiers vizinhos se faltar)
  * e embaralha as alternativas.
+ * Níveis 1-3 → tier 1, 4-7 → tier 2, 8-10 → tier 3 (nos níveis altos a
+ * dificuldade extra vem também do tempo limite por questão).
  */
 export function buildQuizFromBank(bank: BankItem[], level: number, count: number): QuizQuestion[] {
-  const tier = Math.min(3, Math.max(1, level)) as 1 | 2 | 3
+  const tier = (level <= 3 ? 1 : level <= 7 ? 2 : 3) as 1 | 2 | 3
   const primary = shuffle(bank.filter((b) => b.tier === tier))
   const rest = shuffle(bank.filter((b) => b.tier !== tier)).sort(
     (a, b) => Math.abs(a.tier - tier) - Math.abs(b.tier - tier),

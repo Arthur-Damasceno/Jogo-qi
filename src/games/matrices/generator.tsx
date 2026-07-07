@@ -2,11 +2,12 @@ import type { ReactNode } from 'react'
 import type { QuizQuestion } from '../types'
 import { pick, randInt, shuffle } from '../bank'
 
-/** Uma célula da matriz: forma, quantidade e preenchimento. */
+/** Uma célula da matriz: forma, quantidade, preenchimento e tamanho. */
 interface Cell {
   shape: number // índice em SHAPES
   count: number // 1 a 3
   filled: boolean
+  size: number // fator de escala: 1 (normal) ou 0.65 (pequeno)
 }
 
 const SHAPES = ['circle', 'square', 'triangle', 'diamond'] as const
@@ -47,7 +48,8 @@ function CellArt({ cell, color }: { cell: Cell; color: string }) {
       [72, 72],
     ],
   }
-  const r = cell.count === 1 ? 26 : cell.count === 2 ? 18 : 14
+  const base = cell.count === 1 ? 26 : cell.count === 2 ? 18 : 14
+  const r = base * cell.size
   return (
     <g
       fill={cell.filled ? color : 'none'}
@@ -60,13 +62,14 @@ function CellArt({ cell, color }: { cell: Cell; color: string }) {
 }
 
 function sameCell(a: Cell, b: Cell): boolean {
-  return a.shape === b.shape && a.count === b.count && a.filled === b.filled
+  return a.shape === b.shape && a.count === b.count && a.filled === b.filled && a.size === b.size
 }
 
 /** Gera a regra da matriz 3×3 conforme o nível e devolve as 9 células. */
 function generateGrid(level: number): Cell[][] {
   const shapes = shuffle([0, 1, 2, 3]).slice(0, 3)
   const transposed = Math.random() < 0.5
+  const phase = randInt(0, 2) // fase única por grade (nível 10)
   const at = (r: number, c: number) => (transposed ? [c, r] : [r, c])
 
   const grid: Cell[][] = []
@@ -75,24 +78,61 @@ function generateGrid(level: number): Cell[][] {
     for (let c = 0; c < 3; c++) {
       const [rr, cc] = at(r, c)
       let cell: Cell
+      const SMALL = 0.65
       if (level <= 1) {
         // uma dimensão varia: forma por linha
-        cell = { shape: shapes[rr], count: 1, filled: true }
+        cell = { shape: shapes[rr], count: 1, filled: true, size: 1 }
       } else if (level === 2) {
         // forma por linha, quantidade por coluna
-        cell = { shape: shapes[rr], count: cc + 1, filled: true }
+        cell = { shape: shapes[rr], count: cc + 1, filled: true, size: 1 }
       } else if (level === 3) {
         // + preenchimento alternado
-        cell = { shape: shapes[rr], count: cc + 1, filled: (rr + cc) % 2 === 0 }
+        cell = { shape: shapes[rr], count: cc + 1, filled: (rr + cc) % 2 === 0, size: 1 }
       } else if (level === 4) {
         // quadrado latino de formas, quantidade por linha
-        cell = { shape: shapes[(rr + cc) % 3], count: rr + 1, filled: true }
-      } else {
+        cell = { shape: shapes[(rr + cc) % 3], count: rr + 1, filled: true, size: 1 }
+      } else if (level === 5) {
         // quadrado latino de formas e de quantidades, preenchimento alternado
         cell = {
           shape: shapes[(rr + cc) % 3],
           count: ((rr + 2 * cc) % 3) + 1,
           filled: (rr + cc) % 2 === 0,
+          size: 1,
+        }
+      } else if (level === 6) {
+        // forma latina, quantidade por coluna, preenchimento por linha
+        cell = { shape: shapes[(rr + cc) % 3], count: cc + 1, filled: rr % 2 === 0, size: 1 }
+      } else if (level === 7) {
+        // forma latina + tamanho alternado por coluna
+        cell = {
+          shape: shapes[(rr + cc) % 3],
+          count: rr + 1,
+          filled: true,
+          size: cc % 2 === 0 ? 1 : SMALL,
+        }
+      } else if (level === 8) {
+        // dois quadrados latinos (forma e quantidade) + tamanho por linha
+        cell = {
+          shape: shapes[(rr + cc) % 3],
+          count: ((rr + 2 * cc) % 3) + 1,
+          filled: true,
+          size: rr % 2 === 0 ? 1 : SMALL,
+        }
+      } else if (level === 9) {
+        // dois quadrados latinos + preenchimento alternado + tamanho por coluna
+        cell = {
+          shape: shapes[(rr + cc) % 3],
+          count: ((rr + 2 * cc) % 3) + 1,
+          filled: (rr + cc) % 2 === 0,
+          size: cc % 2 === 0 ? 1 : SMALL,
+        }
+      } else {
+        // nível 10: tudo varia — latinos com fase sorteada por grade
+        cell = {
+          shape: shapes[(rr + cc + phase) % 3],
+          count: ((2 * rr + cc) % 3) + 1,
+          filled: (rr + cc) % 2 === 1,
+          size: (rr + cc) % 2 === 0 ? 1 : SMALL,
         }
       }
       grid[r].push(cell)
@@ -101,8 +141,8 @@ function generateGrid(level: number): Cell[][] {
   return grid
 }
 
-function mutate(cell: Cell, shapes: number[]): Cell {
-  const kind = randInt(0, 2)
+function mutate(cell: Cell, shapes: number[], allowSize: boolean): Cell {
+  const kind = randInt(0, allowSize ? 3 : 2)
   if (kind === 0) {
     const others = shapes.filter((s) => s !== cell.shape)
     return { ...cell, shape: pick(others) }
@@ -111,7 +151,8 @@ function mutate(cell: Cell, shapes: number[]): Cell {
     const counts = [1, 2, 3].filter((n) => n !== cell.count)
     return { ...cell, count: pick(counts) }
   }
-  return { ...cell, filled: !cell.filled }
+  if (kind === 2) return { ...cell, filled: !cell.filled }
+  return { ...cell, size: cell.size === 1 ? 0.65 : 1 }
 }
 
 function MatrixArt({ grid }: { grid: Cell[][] }) {
@@ -163,10 +204,13 @@ export function buildMatricesQuiz(level: number, count = 8): QuizQuestion[] {
     const usedShapes = [...new Set(grid.flat().map((c) => c.shape))]
     const color = pickColorForGrid(grid)
 
+    const allowSize = grid.flat().some((c) => c.size !== 1)
     const wrong: Cell[] = []
     for (let guard = 0; wrong.length < 3 && guard < 40; guard++) {
-      let m = mutate(answer, usedShapes)
-      if (Math.random() < 0.4) m = mutate(m, usedShapes)
+      let m = mutate(answer, usedShapes, allowSize)
+      // em níveis baixos, distratores mais "óbvios" (duas mutações);
+      // em níveis altos, mutação única — mais difícil de descartar
+      if (level <= 5 && Math.random() < 0.4) m = mutate(m, usedShapes, allowSize)
       if (!sameCell(m, answer) && !wrong.some((w) => sameCell(w, m))) wrong.push(m)
     }
 

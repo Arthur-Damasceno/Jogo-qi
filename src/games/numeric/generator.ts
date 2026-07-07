@@ -121,12 +121,66 @@ const cubes = (): Seq => {
   return { terms, answer: (6 + offset) ** 3, rule: 'São cubos perfeitos consecutivos.' }
 }
 
+const triangular = (): Seq => {
+  const offset = randInt(1, 5)
+  const tri = (n: number) => (n * (n + 1)) / 2
+  const terms = Array.from({ length: 5 }, (_, i) => tri(i + offset))
+  return {
+    terms,
+    answer: tri(5 + offset),
+    rule: 'São números triangulares: a diferença cresce 1 a cada termo.',
+  }
+}
+
+const affine3 = (): Seq => {
+  const add = pick([1, 2, -1, -2])
+  const start = randInt(1, 4)
+  const terms = [start]
+  for (let i = 1; i < 5; i++) terms.push(terms[i - 1] * 3 + add)
+  return {
+    terms,
+    answer: terms[4] * 3 + add,
+    rule: `Cada termo é o anterior ×3 ${add > 0 ? `+ ${add}` : `− ${-add}`}.`,
+  }
+}
+
+const alternatingGeo = (): Seq => {
+  const sub = randInt(1, 6)
+  const start = randInt(2, 8)
+  const terms = [start]
+  for (let i = 1; i < 5; i++) terms.push(i % 2 === 1 ? terms[i - 1] * 2 : terms[i - 1] - sub)
+  return {
+    terms,
+    answer: 5 % 2 === 1 ? terms[4] * 2 : terms[4] - sub,
+    rule: `A sequência alterna: multiplica por 2, subtrai ${sub}.`,
+  }
+}
+
+const interleavedGeo = (): Seq => {
+  const stepA = randInt(3, 8)
+  const a0 = randInt(1, 10)
+  const b0 = randInt(1, 4)
+  const terms = Array.from({ length: 6 }, (_, i) =>
+    i % 2 === 0 ? a0 + stepA * (i / 2) : b0 * 2 ** ((i - 1) / 2),
+  )
+  return {
+    terms,
+    answer: a0 + stepA * 3,
+    rule: `Duas sequências intercaladas: uma soma ${stepA}, a outra dobra.`,
+  }
+}
+
 const GENS_BY_LEVEL: SeqGen[][] = [
-  [arithmetic(2, 9)],
-  [arithmetic(3, 12), geometric, alternating],
-  [alternating, squares, growingDiff, fibonacciLike],
-  [growingDiff, fibonacciLike, affine, interleaved],
-  [affine, interleaved, primes, cubes, squares],
+  /* 1 */ [arithmetic(2, 9)],
+  /* 2 */ [arithmetic(3, 12), geometric],
+  /* 3 */ [alternating, growingDiff, arithmetic(4, 15)],
+  /* 4 */ [squares, fibonacciLike, alternating],
+  /* 5 */ [affine, growingDiff, triangular],
+  /* 6 */ [interleaved, affine, squares, triangular],
+  /* 7 */ [primes, alternatingGeo, fibonacciLike, interleaved],
+  /* 8 */ [cubes, interleavedGeo, affine3],
+  /* 9 */ [primes, cubes, alternatingGeo, interleavedGeo],
+  /* 10 */ [affine3, interleavedGeo, cubes, primes, alternatingGeo],
 ]
 
 function distractors(seq: Seq): number[] {

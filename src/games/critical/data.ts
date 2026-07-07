@@ -419,6 +419,73 @@ const BANK: BankItem[] = [
     explain:
       '"Até 70%" fixa apenas o teto do desconto. Um único item com 70% torna o anúncio tecnicamente verdadeiro.',
   },
+  {
+    tier: 3,
+    q: 'Um fundo de investimento anuncia: "Nossos 10 fundos ativos batem o mercado há 5 anos." O que a análise crítica deve perguntar primeiro?',
+    choices: [
+      'Quantos fundos a empresa fechou ou fundiu nesses 5 anos',
+      'Qual é a taxa de administração',
+      'Quem é o gestor dos fundos',
+      'Se o mercado subiu no período',
+    ],
+    explain:
+      'Fundos ruins costumam ser fechados ou fundidos; olhar só os sobreviventes infla o desempenho aparente — viés de sobrevivência.',
+  },
+  {
+    tier: 3,
+    q: 'Estudo: pacientes que tomam o remédio X têm mais infartos. Crítico: "Talvez o X seja receitado justamente aos pacientes mais graves." Que tipo de objeção é essa?',
+    choices: [
+      'Causalidade reversa/confusão por indicação — a gravidade causa ambos',
+      'Ataque ad hominem ao estudo',
+      'Apelo à ignorância',
+      'Generalização apressada',
+    ],
+    explain:
+      'Quando a condição do paciente determina o tratamento, o tratamento fica associado ao desfecho ruim sem causá-lo.',
+  },
+  {
+    tier: 3,
+    q: 'Se algum A é B, e todo B é C, qual conclusão é NECESSARIAMENTE verdadeira?',
+    choices: ['Algum A é C', 'Todo A é C', 'Algum C não é A', 'Nenhuma conclusão é possível'],
+    explain:
+      'Os A que são B estão dentro de C; logo, pelo menos algum A é C. "Todo A é C" não segue, pois pode haver A fora de B.',
+  },
+  {
+    tier: 3,
+    q: 'Uma cidade instala radares nos cruzamentos com mais acidentes. No ano seguinte, os acidentes nesses pontos caem. Por que a queda pode NÃO ser mérito dos radares?',
+    choices: [
+      'Regressão à média: pontos com números extremos tendem a voltar ao normal',
+      'Radares sempre reduzem acidentes',
+      'Os motoristas mudaram de cidade',
+      'Acidentes não podem ser medidos',
+    ],
+    explain:
+      'Os cruzamentos foram escolhidos por terem tido números excepcionalmente altos; parte da queda aconteceria de qualquer forma.',
+  },
+  {
+    tier: 3,
+    q: '"O candidato A subiu 4 pontos na pesquisa (margem de erro: ±3 pontos por candidato)." Qual é a leitura mais rigorosa?',
+    choices: [
+      'A subida pode ser bem menor ou maior — a variação está próxima do ruído da pesquisa',
+      'A subida de 4 pontos é um fato exato',
+      'O candidato A vencerá a eleição',
+      'A pesquisa está fraudada',
+    ],
+    explain:
+      'Com margem de ±3 em cada medição, uma diferença de 4 pontos entre duas pesquisas é pouco maior que o erro combinado — sinal fraco.',
+  },
+  {
+    tier: 3,
+    q: 'Argumento: "Nenhum sistema seguro é simples. Este sistema é simples. Logo, não é seguro." Esse raciocínio é...',
+    choices: [
+      'Válido: é um silogismo correto (Celarent)',
+      'Inválido: afirma o consequente',
+      'Inválido: generalização apressada',
+      'Válido apenas se o sistema for grande',
+    ],
+    explain:
+      'A forma é válida: se seguro → não-simples, então simples → não-seguro (contrapositiva). A conclusão segue das premissas — o que se pode questionar é a primeira premissa.',
+  },
 ]
 
 export function buildCriticalQuiz(level: number, count = 8): QuizQuestion[] {

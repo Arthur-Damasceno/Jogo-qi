@@ -12,10 +12,10 @@ const ROUNDS = 5
  * reproduzi-la na mesma ordem. A cada rodada vencida a sequência cresce.
  */
 export default function MemoryGame({ level, onFinish }: Props) {
-  const gridSize = level <= 2 ? 3 : 4
+  const gridSize = level <= 2 ? 3 : level <= 6 ? 4 : 5
   const cellCount = gridSize * gridSize
-  const baseLen = 2 + Math.ceil(level / 2) // n3: 3,3,4,4,5
-  const flashMs = Math.max(650 - level * 60, 320)
+  const baseLen = 2 + Math.ceil(level / 2) // nível 1 → 3 células ... nível 10 → 7
+  const flashMs = Math.max(650 - level * 45, 260)
 
   const [round, setRound] = useState(0)
   const [score, setScore] = useState(0)

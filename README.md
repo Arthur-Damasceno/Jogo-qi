@@ -11,13 +11,30 @@ direto do navegador — sem lojas de aplicativos.
 | --- | --- |
 | 🧠 Raciocínio Crítico | Silogismos, falácias lógicas e análise de argumentos |
 | 🔷 Matrizes de Padrões | Raciocínio fluido com padrões visuais (estilo Raven) |
-| 🎯 Memória de Trabalho | Sequências espaciais que crescem a cada rodada |
+| 🎯 Memória de Trabalho | Sequências espaciais que crescem a cada rodada (até 5×5) |
+| 🔁 N-Back | Atenção e memória de trabalho: detectar repetições N passos atrás |
+| 🎨 Stroop | Controle inibitório: tocar na cor da tinta, não na palavra |
 | 🔢 Raciocínio Numérico | Sequências e padrões numéricos gerados na hora |
+| ➗ Cálculo Mental | Aritmética rápida contra o relógio |
 | 📚 Raciocínio Verbal | Analogias, sinônimos, antônimos e intrusos |
 
-Cada jogo tem níveis de dificuldade que se adaptam ao seu desempenho:
-**≥ 80% de acerto sobe de nível, < 40% desce.** O progresso (XP, níveis,
-sequência de dias) fica salvo no aparelho — sem conta, sem servidor.
+## QI estimado
+
+Cada jogo tem **10 níveis** que se adaptam ao desempenho: ≥ 80% de acerto sobe
+de nível, < 40% desce. Nos níveis altos entra pressão de tempo por questão.
+
+O app calcula um **QI estimado numa escala de 80 a 200**: cada jogo contribui
+com `80 + 12 × (nível efetivo)`, onde o nível efetivo combina o nível atual e o
+acerto médio das últimas 5 sessões. Chegar ao nível 10 com alta precisão em
+todos os jogos leva a estimativa a 200.
+
+> ⚠️ É uma métrica de progresso dentro do app — não substitui um teste
+> psicométrico aplicado por profissionais.
+
+## Perfis locais
+
+Até **6 jogadores** no mesmo aparelho, cada um com progresso, níveis, XP e QI
+próprios. Tudo fica em `localStorage` — sem conta, sem servidor.
 
 ## Como instalar no celular
 
@@ -42,25 +59,28 @@ Stack: React 18 + TypeScript + Vite + vite-plugin-pwa. Sem backend.
 ## Deploy
 
 O deploy é automático: todo push para a branch principal roda o workflow
-`.github/workflows/deploy.yml`, que faz o build e publica no GitHub Pages.
-
-> Primeira vez: se o workflow falhar em "configure-pages", ative o Pages em
-> **Settings → Pages → Source: GitHub Actions** e rode o workflow de novo.
+`.github/workflows/deploy.yml`, que faz o build e publica a pasta `dist/` na
+branch `gh-pages`, servida pelo GitHub Pages.
 
 ## Estrutura
 
 ```
 src/
-  App.tsx                    # telas: início, jogo, resultado, estatísticas
-  state/progress.ts          # progresso em localStorage + regras de nível
-  components/QuizEngine.tsx  # motor de múltipla escolha com feedback
+  App.tsx                    # telas: perfis, início, jogo, resultado, estatísticas
+  state/
+    profiles.ts              # até 6 perfis locais (localStorage)
+    progress.ts              # progresso por perfil + cálculo do QI estimado
+  components/QuizEngine.tsx  # motor de múltipla escolha com feedback e cronômetro
   games/
     bank.ts                  # utilitários de banco de questões
     critical/data.ts         # banco de raciocínio crítico (pt-BR)
     verbal/data.ts           # banco de raciocínio verbal (pt-BR)
-    numeric/generator.ts     # gerador procedural de sequências
-    matrices/generator.tsx   # gerador procedural de matrizes (SVG)
-    memory/MemoryGame.tsx    # jogo de sequência espacial
+    numeric/generator.ts     # gerador procedural de sequências (10 níveis)
+    calc/generator.ts        # gerador de aritmética mental (10 níveis)
+    matrices/generator.tsx   # gerador procedural de matrizes SVG (10 níveis)
+    memory/MemoryGame.tsx    # sequência espacial (grades 3×3 a 5×5)
+    nback/NBackGame.tsx      # n-back espacial (n = 1 a 3)
+    stroop/StroopGame.tsx    # teste de Stroop cronometrado
 ```
 
 ## Caminho para as lojas (futuro)

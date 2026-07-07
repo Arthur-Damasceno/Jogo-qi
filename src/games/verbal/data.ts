@@ -227,6 +227,42 @@ const BANK: BankItem[] = [
     choices: ['Narrativa', 'Teatro', 'Emoção', 'Final'],
     explain: 'A relação é ponto máximo → estrutura: o ápice é o topo da montanha; o clímax, o ponto alto da narrativa.',
   },
+  {
+    tier: 3,
+    q: 'PRÓDIGO está para ECONOMIA assim como TEMERÁRIO está para...',
+    choices: ['Prudência', 'Coragem', 'Medo', 'Aventura'],
+    explain: 'A relação é pessoa → virtude que lhe falta: ao pródigo falta economia; ao temerário, prudência.',
+  },
+  {
+    tier: 3,
+    q: 'Qual é o sinônimo mais próximo de IDIOSSINCRASIA?',
+    choices: ['Particularidade', 'Doença', 'Teimosia', 'Antipatia'],
+    explain: 'Idiossincrasia é um traço ou maneira de ser peculiar a um indivíduo — uma particularidade.',
+  },
+  {
+    tier: 3,
+    q: 'Qual palavra NÃO pertence ao grupo? PROTELAR, POSTERGAR, PROCRASTINAR, PRECIPITAR',
+    choices: ['Precipitar', 'Protelar', 'Postergar', 'Procrastinar'],
+    explain: 'Precipitar é apressar; as outras três significam adiar.',
+  },
+  {
+    tier: 3,
+    q: 'EXÍMIO está para HABILIDADE assim como ERUDITO está para...',
+    choices: ['Conhecimento', 'Escola', 'Livros', 'Memória'],
+    explain: 'A relação é adjetivo → aquilo que se possui em alto grau: o exímio tem grande habilidade; o erudito, vasto conhecimento.',
+  },
+  {
+    tier: 3,
+    q: 'Qual é o antônimo de PARCIMÔNIA?',
+    choices: ['Desperdício', 'Riqueza', 'Pressa', 'Generosidade'],
+    explain: 'Parcimônia é o uso comedido e econômico; o oposto é o desperdício.',
+  },
+  {
+    tier: 3,
+    q: 'OSTRACISMO está para EXCLUSÃO assim como MECENATO está para...',
+    choices: ['Patrocínio', 'Riqueza', 'Arte', 'Poder'],
+    explain: 'A relação é termo clássico → prática que designa: ostracismo é a exclusão; mecenato é o patrocínio às artes.',
+  },
 ]
 
 export function buildVerbalQuiz(level: number, count = 8): QuizQuestion[] {
