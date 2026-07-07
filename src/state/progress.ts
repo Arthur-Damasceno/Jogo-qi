@@ -30,6 +30,8 @@ export interface AppState {
   games: Record<GameId, GameProgress>
   streak: { count: number; last: string }
   study: StudyState
+  /** IDs de questões já exibidas, por jogo (mais antiga primeiro) — evita repetições */
+  seen: Partial<Record<GameId, string[]>>
 }
 
 const emptyGame = (): GameProgress => ({ level: 1, xp: 0, best: 0, sessions: [] })
@@ -38,6 +40,7 @@ const emptyState = (): AppState => ({
   games: Object.fromEntries(GAMES.map((g) => [g.id, emptyGame()])) as Record<GameId, GameProgress>,
   streak: { count: 0, last: '' },
   study: { goalMinutes: 300, entries: [] }, // 5h/semana por padrão
+  seen: {},
 })
 
 /** Data local no formato YYYY-MM-DD */
@@ -60,6 +63,7 @@ export function loadState(): AppState {
       streak: parsed.streak ?? base.streak,
       games: { ...base.games, ...parsed.games },
       study: parsed.study ?? base.study,
+      seen: parsed.seen ?? base.seen,
     }
   } catch {
     return emptyState()
@@ -151,6 +155,18 @@ export function recordSession(gameId: GameId, score: number, total: number): Ses
 
 export const totalXp = (state: AppState): number =>
   Object.values(state.games).reduce((sum, g) => sum + g.xp, 0)
+
+// ---------------------------------------------------------------- questões vistas
+
+export const getSeenQuestions = (gameId: GameId): string[] => loadState().seen[gameId] ?? []
+
+/** Registra questões exibidas: move para o fim da lista (mais recentes por último). */
+export function markQuestionsSeen(gameId: GameId, ids: string[]) {
+  const state = loadState()
+  const current = (state.seen[gameId] ?? []).filter((id) => !ids.includes(id))
+  state.seen[gameId] = [...current, ...ids].slice(-300)
+  save(state)
+}
 
 // ---------------------------------------------------------------- meta de estudo
 

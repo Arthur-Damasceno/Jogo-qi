@@ -138,6 +138,128 @@ const BANK: BankItem[] = [
     ],
     explain: 'Forma válida modus ponens: premissa condicional + antecedente verdadeiro = consequente verdadeiro.',
   },
+  {
+    tier: 1,
+    q: 'Todo atleta desta equipe treina aos sábados. Rui não treina aos sábados. O que se conclui?',
+    choices: [
+      'Rui não é atleta desta equipe',
+      'Rui é preguiçoso',
+      'Rui treina aos domingos',
+      'Nada se pode concluir',
+    ],
+    explain: 'Modus tollens: se ser da equipe implica treinar aos sábados, quem não treina não é da equipe.',
+  },
+  {
+    tier: 1,
+    q: '"O político X é corrupto porque todo mundo sabe disso." Qual é o problema?',
+    choices: [
+      'Usa a própria crença popular como prova (apelo à popularidade)',
+      'Ataca o político pessoalmente',
+      'Cita fontes demais',
+      'É um falso dilema',
+    ],
+    explain: '"Todo mundo sabe" não é evidência — é a falácia do apelo à popularidade/senso comum.',
+  },
+  {
+    tier: 1,
+    q: 'Bruna chegou molhada em casa. Qual conclusão é a MENOS precipitada?',
+    choices: [
+      'Algo molhou Bruna no caminho',
+      'Choveu na cidade inteira',
+      'Bruna esqueceu o guarda-chuva',
+      'Bruna caiu na piscina',
+    ],
+    explain: 'As outras opções assumem causas específicas sem evidência; a primeira afirma apenas o que os fatos garantem.',
+  },
+  {
+    tier: 1,
+    q: '"Você diz que devo dormir mais, mas você dorme 5 horas por noite!" O conselho fica refutado?',
+    choices: [
+      'Não — a incoerência de quem aconselha não torna o conselho falso',
+      'Sim, conselhos exigem exemplo',
+      'Sim, é uma contradição lógica',
+      'Não, porque dormir é opcional',
+    ],
+    explain: 'Apontar hipocrisia (tu quoque) não refuta o conteúdo: dormir mais pode ser um bom conselho de qualquer forma.',
+  },
+  {
+    tier: 1,
+    q: 'Numa gaveta há apenas meias pretas e brancas. Tirei uma meia que não é preta. O que se conclui?',
+    choices: ['A meia é branca', 'A meia é cinza', 'A gaveta estava vazia', 'Nada se pode concluir'],
+    explain: 'Silogismo disjuntivo: se só há duas possibilidades e uma é eliminada, resta a outra.',
+  },
+  {
+    tier: 1,
+    q: '"Compre este colchão: é o mais vendido do Brasil!" O que o anúncio NÃO prova?',
+    choices: [
+      'Que o colchão é o melhor para você',
+      'Que o colchão vende muito',
+      'Que o colchão existe',
+      'Que há outros colchões no mercado',
+    ],
+    explain: 'Vender muito é fato; ser bom para o seu caso é outra afirmação — popularidade não é qualidade.',
+  },
+  {
+    tier: 1,
+    q: 'Léo é mais rápido que Duda. Duda é mais rápida que Cadu. Qual comparação NÃO é garantida?',
+    choices: [
+      'Cadu é mais rápido que Léo aos domingos',
+      'Léo é mais rápido que Cadu',
+      'Duda está entre os dois',
+      'Cadu é o mais lento dos três',
+    ],
+    explain: 'A transitividade garante Léo > Duda > Cadu; qualquer exceção "aos domingos" não está nas premissas.',
+  },
+  {
+    tier: 1,
+    q: '"Depois que passei a usar esta pulseira, não fiquei mais gripado. A pulseira funciona!" Qual é o erro?',
+    choices: [
+      'Confundir "depois de" com "por causa de" (falsa causa)',
+      'Falta de amostra grande',
+      'Apelo à autoridade',
+      'Ataque pessoal',
+    ],
+    explain: 'Post hoc ergo propter hoc: a ordem no tempo não prova relação de causa.',
+  },
+  {
+    tier: 1,
+    q: 'Todos os peixes nadam. Todos os atuns são peixes. Logo...',
+    choices: ['Todos os atuns nadam', 'Tudo que nada é peixe', 'Alguns atuns não nadam', 'Atuns são mamíferos'],
+    explain: 'Silogismo válido em cadeia: atum ⊂ peixe ⊂ "coisas que nadam".',
+  },
+  {
+    tier: 1,
+    q: '"Ou você compra o plano premium, ou vai se arrepender para sempre." Que tática é essa?',
+    choices: [
+      'Falso dilema com apelo ao medo',
+      'Argumento estatístico',
+      'Apelo à autoridade',
+      'Analogia válida',
+    ],
+    explain: 'Reduz as opções a duas e usa medo em vez de razões — duas falácias juntas.',
+  },
+  {
+    tier: 1,
+    q: 'A professora disse: "Quem fizer o trabalho extra ganha ponto." João não fez. O que se conclui?',
+    choices: [
+      'João não ganha o ponto extra do trabalho',
+      'João vai reprovar',
+      'João ganhará ponto de outra forma',
+      'A professora mentiu',
+    ],
+    explain: 'A promessa só garante o ponto a quem fez; sobre o resto (reprovar, outras formas) nada foi dito.',
+  },
+  {
+    tier: 1,
+    q: '"Este remédio é natural, então não faz mal." Qual é o erro?',
+    choices: [
+      'Apelo à natureza — ser natural não garante segurança',
+      'Generalização válida',
+      'Apelo à tradição',
+      'Não há erro',
+    ],
+    explain: 'Muitas substâncias naturais são tóxicas (cicuta, por exemplo). "Natural" não implica "seguro".',
+  },
 
   // ---------- TIER 2: premissas ocultas, fortalecer/enfraquecer ----------
   {
@@ -283,6 +405,150 @@ const BANK: BankItem[] = [
     ],
     explain:
       'Exagerar ou distorcer o argumento original para combater uma versão caricata dele é a falácia do espantalho.',
+  },
+  {
+    tier: 2,
+    q: '"Nosso curso funciona: 90% dos formados recomendam." Qual pergunta expõe melhor a fragilidade?',
+    choices: [
+      'Quantos alunos desistiram antes de se formar?',
+      'O curso é presencial ou online?',
+      'Quanto custa o curso?',
+      'Há quanto tempo o curso existe?',
+    ],
+    explain:
+      'Perguntar só aos formados exclui os insatisfeitos que abandonaram — amostra enviesada pelos sobreviventes.',
+  },
+  {
+    tier: 2,
+    q: '"Sorvete e afogamentos aumentam juntos no verão. Sorvete causa afogamento?" Qual é a explicação correta?',
+    choices: [
+      'Uma terceira variável (calor) aumenta os dois',
+      'Sim, sorvete causa cãibras',
+      'Afogamentos causam venda de sorvete',
+      'É coincidência sem explicação',
+    ],
+    explain:
+      'Correlação espúria: o calor leva mais gente a nadar E a comer sorvete. É o exemplo clássico de causa comum.',
+  },
+  {
+    tier: 2,
+    q: '"Devemos rejeitar a proposta do sindicato, afinal sindicatos só querem confusão." Qual é o problema central?',
+    choices: [
+      'Julga a proposta pela origem, não pelo conteúdo (falácia genética)',
+      'Falta citar qual sindicato',
+      'É um argumento circular',
+      'Usa estatísticas falsas',
+    ],
+    explain:
+      'A origem de uma ideia não determina seu mérito; a proposta deveria ser avaliada pelos próprios termos.',
+  },
+  {
+    tier: 2,
+    q: '"Meu time venceu sempre que usei esta camisa. Vou usá-la na final." Que viés alimenta essa crença?',
+    choices: [
+      'Lembrar dos acertos e esquecer as falhas (confirmação)',
+      'Excesso de análise estatística',
+      'Pessimismo',
+      'Viés de ancoragem',
+    ],
+    explain:
+      'O viés de confirmação faz notar as vitórias com a camisa e ignorar as derrotas com ela — a "amostra mental" fica seletiva.',
+  },
+  {
+    tier: 2,
+    q: '"A nova lei causou o aumento dos empregos: veja, foram criadas 100 mil vagas." O que falta para sustentar a conclusão?',
+    choices: [
+      'Comparar com o que teria acontecido sem a lei',
+      'Saber quem escreveu a lei',
+      'Um número redondo maior',
+      'A opinião dos empresários',
+    ],
+    explain:
+      'Sem um contrafactual (tendência anterior, grupo de comparação), o número sozinho não separa o efeito da lei do crescimento que já ocorreria.',
+  },
+  {
+    tier: 2,
+    q: '"O especialista em nutrição disse que este carro é o mais seguro." Por que a autoridade aqui vale pouco?',
+    choices: [
+      'A especialidade dele não é a área da afirmação',
+      'Especialistas sempre erram',
+      'Carros não podem ser seguros',
+      'Ele foi pago para dizer isso',
+    ],
+    explain:
+      'Apelo à autoridade só tem força quando a autoridade é da área relevante — nutrição não credencia ninguém em segurança automotiva.',
+  },
+  {
+    tier: 2,
+    q: 'Manchete: "Comer chocolate emagrece, diz estudo com 15 pessoas." Qual é a crítica mais pertinente?',
+    choices: [
+      'Amostra minúscula permite resultados por puro acaso',
+      'Chocolate é caro',
+      'O estudo deveria usar ratos',
+      'Emagrecer não é saudável',
+    ],
+    explain:
+      'Com 15 participantes, flutuações aleatórias produzem "efeitos" facilmente — resultados exigem replicação com amostras maiores.',
+  },
+  {
+    tier: 2,
+    q: '"Se você ama sua família, vai contratar este seguro." Qual tática o vendedor usa?',
+    choices: [
+      'Chantagem emocional que pula a análise do produto',
+      'Comparação honesta de preços',
+      'Apelo à autoridade técnica',
+      'Argumento estatístico',
+    ],
+    explain:
+      'Vincular a compra ao amor pela família é apelo à emoção: transforma uma decisão financeira em teste moral.',
+  },
+  {
+    tier: 2,
+    q: 'Pedro melhorou da gripe em 7 dias tomando xarope. Sem xarope, gripes duram cerca de 7 dias. O que se conclui?',
+    choices: [
+      'Não há evidência de que o xarope tenha ajudado',
+      'O xarope curou Pedro',
+      'O xarope atrasou a cura',
+      'Pedro não estava gripado',
+    ],
+    explain:
+      'O desfecho foi igual ao curso natural da doença — sem comparação, não dá para atribuir mérito ao xarope.',
+  },
+  {
+    tier: 2,
+    q: '"Todos os meus amigos acham o filme ótimo, então o país inteiro vai amar." Qual é o erro?',
+    choices: [
+      'Generalizar de um grupo parecido com você para todos',
+      'Confiar em amigos',
+      'Gostar de cinema',
+      'Falso dilema',
+    ],
+    explain:
+      'Seus amigos não são amostra representativa da população: compartilham seus gostos — generalização a partir de amostra enviesada.',
+  },
+  {
+    tier: 2,
+    q: '"Ou a empresa corta salários, ou vai à falência", diz o diretor, sem mostrar as contas. O que um bom crítico exige primeiro?',
+    choices: [
+      'Evidência de que só existem essas duas opções',
+      'A demissão do diretor',
+      'Um aumento geral',
+      'A opinião dos clientes',
+    ],
+    explain:
+      'Dilemas precisam ser demonstrados: sem os números, pode haver alternativas (cortar outros custos, renegociar dívidas).',
+  },
+  {
+    tier: 2,
+    q: 'A média salarial de uma empresa é R$ 15 mil, mas quase todos ganham R$ 3 mil. Como isso é possível?',
+    choices: [
+      'Poucos salários altíssimos puxam a média para cima',
+      'A média está errada',
+      'Todos ganham R$ 15 mil às vezes',
+      'É impossível',
+    ],
+    explain:
+      'A média é sensível a valores extremos; a mediana descreveria melhor o salário típico. Cuidado com "médias" em argumentos.',
   },
 
   // ---------- TIER 3: análise fina de argumentos ----------
@@ -486,8 +752,80 @@ const BANK: BankItem[] = [
     explain:
       'A forma é válida: se seguro → não-simples, então simples → não-seguro (contrapositiva). A conclusão segue das premissas — o que se pode questionar é a primeira premissa.',
   },
+  {
+    tier: 3,
+    q: 'Na 2ª Guerra, engenheiros queriam blindar os aviões nos pontos onde os que voltavam tinham mais furos. Abraham Wald sugeriu o contrário: blindar onde NÃO havia furos. Por quê?',
+    choices: [
+      'Aviões atingidos nesses pontos não voltavam para ser contados',
+      'Furos enfraquecem menos que solda',
+      'Os pilotos preferiam assim',
+      'Blindagem era escassa',
+    ],
+    explain:
+      'Só os sobreviventes eram observados: os furos "ausentes" marcavam os pontos fatais — o caso histórico clássico do viés de sobrevivência.',
+  },
+  {
+    tier: 3,
+    q: 'Cada departamento da empresa melhorou sua taxa de aprovação, mas a taxa geral caiu. Isso é possível?',
+    choices: [
+      'Sim — se a mistura de casos entre departamentos mudou (paradoxo de Simpson)',
+      'Não, é contradição matemática',
+      'Só se houver fraude',
+      'Só com departamentos novos',
+    ],
+    explain:
+      'Paradoxo de Simpson: tendências podem se inverter na agregação quando as proporções dos grupos mudam.',
+  },
+  {
+    tier: 3,
+    q: '"Nunca houve guerra entre países que usam nossa moeda. Logo, adotar nossa moeda garante a paz." Além da amostra pequena, qual é o erro central?',
+    choices: [
+      'Confunde correlação (talvez por laços econômicos prévios) com causa',
+      'Guerras não podem ser contadas',
+      'Moedas não existem há tempo suficiente',
+      'É um ataque pessoal',
+    ],
+    explain:
+      'Países que compartilham moeda já são integrados economicamente — essa integração prévia pode explicar a paz, não a moeda em si.',
+  },
+  {
+    tier: 3,
+    q: 'Um palestrante diz: "Pessoas de sucesso acordam às 5h; acorde às 5h e terá sucesso." Quais são os DOIS problemas?',
+    choices: [
+      'Inverte a direção da causa e ignora quem acorda às 5h sem sucesso',
+      'Acordar cedo faz mal e é difícil',
+      'Sucesso não existe e 5h é arbitrário',
+      'Palestrantes mentem e madrugar cansa',
+    ],
+    explain:
+      'Pode ser o sucesso (ou o tipo de trabalho) que leva a acordar cedo — e os madrugadores sem sucesso ficam fora da conta.',
+  },
+  {
+    tier: 3,
+    q: 'Se a afirmação "todos os corvos são pretos" é verdadeira, qual observação a REFUTARIA?',
+    choices: [
+      'Um único corvo não preto',
+      'Mil corvos pretos',
+      'Um pássaro preto que não é corvo',
+      'A ausência de corvos brancos até hoje',
+    ],
+    explain:
+      'Universais são refutáveis por um único contraexemplo; confirmações acumuladas jamais a provam definitivamente (Popper).',
+  },
+  {
+    tier: 3,
+    q: 'João: "Este investimento rendeu 20% ao ano nos últimos 3 anos, então renderá 20% no próximo." Qual premissa oculta o argumento exige?',
+    choices: [
+      'Que as condições passadas continuarão valendo no futuro',
+      'Que João entende de investimentos',
+      'Que 20% é um bom retorno',
+      'Que outros investimentos rendem menos',
+    ],
+    explain:
+      'Toda indução do passado para o futuro pressupõe estabilidade das condições — exatamente o que mercados não garantem.',
+  },
 ]
 
 export function buildCriticalQuiz(level: number, count = 8): QuizQuestion[] {
-  return buildQuizFromBank(BANK, level, count)
+  return buildQuizFromBank(BANK, level, count, 'critical')
 }

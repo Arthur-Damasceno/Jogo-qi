@@ -79,6 +79,42 @@ const BANK: BankItem[] = [
     choices: ['Ave', 'Ninho', 'Casca', 'Galinheiro'],
     explain: 'A relação é origem → ser desenvolvido: da semente nasce a árvore, do ovo nasce a ave.',
   },
+  {
+    tier: 1,
+    q: 'CHAVE está para FECHADURA assim como SENHA está para...',
+    choices: ['Conta', 'Computador', 'Segredo', 'Número'],
+    explain: 'A relação é instrumento de acesso → aquilo que ele abre: a chave abre a fechadura, a senha abre a conta.',
+  },
+  {
+    tier: 1,
+    q: 'Qual palavra NÃO pertence ao grupo? MARTELO, SERROTE, PREGO, CHAVE DE FENDA',
+    choices: ['Prego', 'Martelo', 'Serrote', 'Chave de fenda'],
+    explain: 'Prego é material de fixação; os demais são ferramentas.',
+  },
+  {
+    tier: 1,
+    q: 'FARINHA está para PÃO assim como UVA está para...',
+    choices: ['Vinho', 'Parreira', 'Cacho', 'Suco de laranja'],
+    explain: 'A relação é matéria-prima → produto: da farinha se faz o pão, da uva se faz o vinho.',
+  },
+  {
+    tier: 1,
+    q: 'Qual é o antônimo de CORAJOSO?',
+    choices: ['Covarde', 'Fraco', 'Lento', 'Tímido'],
+    explain: 'Coragem opõe-se a covardia; timidez e fraqueza são traços diferentes.',
+  },
+  {
+    tier: 1,
+    q: 'TERMÔMETRO está para TEMPERATURA assim como BALANÇA está para...',
+    choices: ['Peso', 'Comida', 'Equilíbrio', 'Cozinha'],
+    explain: 'A relação é instrumento → grandeza que mede.',
+  },
+  {
+    tier: 1,
+    q: 'Qual é o sinônimo mais próximo de CONTENTE?',
+    choices: ['Alegre', 'Calmo', 'Educado', 'Satisfeito com comida'],
+    explain: 'Contente descreve estado de alegria/satisfação; o sinônimo direto é alegre.',
+  },
 
   // ---------- TIER 2 ----------
   {
@@ -152,6 +188,42 @@ const BANK: BankItem[] = [
     q: 'PARTITURA está para MÚSICO assim como RECEITA está para...',
     choices: ['Cozinheiro', 'Médico', 'Ingrediente', 'Restaurante'],
     explain: 'A relação é guia escrito → profissional que o executa (no sentido culinário).',
+  },
+  {
+    tier: 2,
+    q: 'CORAGEM está para TEMERIDADE assim como ECONOMIA está para...',
+    choices: ['Avareza', 'Riqueza', 'Pobreza', 'Generosidade'],
+    explain: 'A relação é virtude → seu excesso vicioso: coragem em excesso vira temeridade; economia em excesso, avareza.',
+  },
+  {
+    tier: 2,
+    q: 'Qual palavra NÃO pertence ao grupo? EFICAZ, EFICIENTE, PRODUTIVO, INÓCUO',
+    choices: ['Inócuo', 'Eficaz', 'Eficiente', 'Produtivo'],
+    explain: 'Inócuo é o que não produz efeito (nem dano); os demais indicam bom desempenho.',
+  },
+  {
+    tier: 2,
+    q: 'MAESTRO está para ORQUESTRA assim como TÉCNICO está para...',
+    choices: ['Time', 'Estádio', 'Bola', 'Torcida'],
+    explain: 'A relação é líder → grupo que coordena.',
+  },
+  {
+    tier: 2,
+    q: 'Qual é o sinônimo mais próximo de ALTRUÍSTA?',
+    choices: ['Abnegado', 'Rico', 'Famoso', 'Educado'],
+    explain: 'Altruísta é quem se dedica ao bem dos outros — abnegado.',
+  },
+  {
+    tier: 2,
+    q: 'CREPÚSCULO está para DIA assim como OUTONO está para...',
+    choices: ['Ano', 'Inverno', 'Folhas', 'Frio'],
+    explain: 'A relação é fase de declínio → ciclo: o crepúsculo encerra o dia, o outono anuncia o fim do ciclo anual de crescimento.',
+  },
+  {
+    tier: 2,
+    q: 'Qual é o antônimo de EFUSIVO?',
+    choices: ['Contido', 'Triste', 'Grosseiro', 'Silencioso'],
+    explain: 'Efusivo é quem demonstra sentimentos com intensidade; o oposto é contido.',
   },
 
   // ---------- TIER 3 ----------
@@ -266,5 +338,5 @@ const BANK: BankItem[] = [
 ]
 
 export function buildVerbalQuiz(level: number, count = 8): QuizQuestion[] {
-  return buildQuizFromBank(BANK, level, count)
+  return buildQuizFromBank(BANK, level, count, 'verbal')
 }
