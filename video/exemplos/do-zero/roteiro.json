@@ -1,0 +1,190 @@
+{
+  "titulo": "Edição com IA do zero (recriação do vídeo de referência)",
+  "fps": 30,
+  "duracao": 60,
+  "voz": "voz.mp3",
+  "efeitosAuto": true,
+  "legendas": [
+    { "t": 0.0, "texto": "Todo dia alguém me *pede*" },
+    { "t": 1.25, "texto": "pra *ensinar,*" },
+    { "t": 2.0, "texto": "do *zero,*" },
+    { "t": 2.75, "texto": "como eu edito *os meus vídeos*" },
+    { "t": 4.0, "texto": "com *IA.*" },
+    { "t": 4.5, "texto": "Chegou a *hora.*" },
+    { "t": 5.4, "texto": "Hoje eu te *mostro*" },
+    { "t": 6.0, "texto": "o *passo a passo* inteiro," },
+    { "t": 7.2, "texto": "mesmo se você *nunca*" },
+    { "t": 8.4, "texto": "usou uma *IA na vida.*" },
+    { "t": 9.4, "texto": "*Bora?*" },
+    { "t": 10.0, "texto": "*Primeiro,*" },
+    { "t": 10.7, "texto": "abre a sua *IA* no computador." },
+    { "t": 12.0, "texto": "Pode ser o *Claude,*" },
+    { "t": 12.7, "texto": "na aba *Code,*" },
+    { "t": 13.7, "texto": "ou o *ChatGPT,*" },
+    { "t": 14.6, "texto": "no *Codex.*" },
+    { "t": 15.4, "texto": "É ali que ela *mexe*" },
+    { "t": 16.4, "texto": "nos seus arquivos *de verdade.*" },
+    { "t": 17.7, "texto": "Só que, *sozinha,*" },
+    { "t": 18.8, "texto": "ela não sabe *editar.*" },
+    { "t": 20.0, "texto": "Não sabe onde *cortar,*" },
+    { "t": 21.0, "texto": "que *legenda* usar," },
+    { "t": 22.0, "texto": "nem que *som* pôr." },
+    { "t": 23.0, "texto": "Aí o vídeo sai com cara de *genérico.*" },
+    { "t": 25.0, "texto": "É aí que *entra*" },
+    { "t": 25.7, "texto": "o arquivo *EDIT IA.*" },
+    { "t": 27.25, "texto": "Você solta ele *na conversa*" },
+    { "t": 28.7, "texto": "e cola a *mensagem* que vem junto." },
+    { "t": 30.2, "texto": "*Pronto:*" },
+    { "t": 30.7, "texto": "ela instala *sozinha*" },
+    { "t": 31.9, "texto": "tudo o que precisa pra *cortar,*" },
+    { "t": 33.2, "texto": "*legendar,*" },
+    { "t": 33.9, "texto": "*animar*" },
+    { "t": 34.6, "texto": "e pôr *trilha.*" },
+    { "t": 35.4, "texto": "A cada *passo,*" },
+    { "t": 36.2, "texto": "ela te *pergunta* se pode," },
+    { "t": 37.2, "texto": "e você só clica em *permitir.*" },
+    { "t": 38.9, "texto": "Leva uns *quinze minutos,*" },
+    { "t": 40.2, "texto": "*uma vez só,*" },
+    { "t": 40.7, "texto": "e não pede *nenhuma senha.*" },
+    { "t": 42.3, "texto": "Agora é só *arrastar*" },
+    { "t": 43.2, "texto": "a sua *gravação*" },
+    { "t": 44.0, "texto": "e pedir em *português:*" },
+    { "t": 45.2, "texto": "edita esse vídeo pra *reels.*" },
+    { "t": 46.7, "texto": "Ela tira as *pausas*" },
+    { "t": 47.7, "texto": "e os *erros,*" },
+    { "t": 48.2, "texto": "fica com a *melhor tomada,*" },
+    { "t": 49.7, "texto": "põe *legenda,*" },
+    { "t": 50.4, "texto": "*animação*" },
+    { "t": 50.9, "texto": "e *trilha.*" },
+    { "t": 51.7, "texto": "E antes de *fechar,*" },
+    { "t": 52.7, "texto": "ela te mostra o *corte*" },
+    { "t": 53.7, "texto": "pra você *aprovar*" },
+    { "t": 54.4, "texto": "ou pedir um *ajuste.*" },
+    { "t": 55.6, "texto": "Toca no botão *Saiba mais*" },
+    { "t": 57.2, "texto": "e vê essa *IA editando.*", "fim": 59.8 }
+  ],
+  "blocos": [
+    {
+      "inicio": 0, "fim": 5.4, "tema": "escuro",
+      "elementos": [
+        { "tipo": "bloqueio", "t": 0, "entrada": "desfoque", "y": 560, "data": "sexta-feira, 23 de outubro", "hora": "21:47",
+          "notificacoes": [
+            { "t": 0.3, "usuario": "rafa.posta", "texto": "comentou: ensina do zero, por favor" },
+            { "t": 1.3, "usuario": "carol.grava", "texto": "comentou: como você edita esses vídeos?" },
+            { "t": 2.1, "usuario": "bia.vende", "texto": "comentou: qual IA você usa?" },
+            { "t": 3.0, "usuario": "leo.cria", "texto": "comentou: faz um passo a passo!!" }
+          ] }
+      ]
+    },
+    {
+      "inicio": 5.4, "fim": 10, "tema": "escuro",
+      "elementos": [
+        { "tipo": "cartao", "t": 5.5, "y": 640, "entrada": "zoom", "rotulo": "Edição com IA", "canto": "3 passos", "titulo": "Do zero", "sub": "o passo a passo inteiro", "tDigitar": 6.0 },
+        { "tipo": "icones", "t": 7.1, "y": 940, "entrada": "nenhum", "itens": [
+          { "t": 7.2, "faisca": true, "cor": "#e8805f" },
+          { "t": 7.7, "texto": "◎", "cor": "#1c1c1e" },
+          { "t": 8.1, "texto": "▣", "cor": "#2b2622", "corTexto": "#f37a1f" },
+          { "t": 8.6, "texto": "▶", "cor": "#fff", "corTexto": "#e0102f" }
+        ] },
+        { "tipo": "campo", "t": 8.9, "y": 1130, "texto": "bora", "tDigitar": 9.1 }
+      ]
+    },
+    {
+      "inicio": 10, "fim": 25, "tema": "claro",
+      "passo": { "n": 1, "total": 3, "titulo": "Abra a sua IA", "tTitulo": 10.8 },
+      "elementos": [
+        { "tipo": "janela", "t": 11.0, "ate": 13.7, "titulo": "Claude", "itens": [
+          { "t": 11.0, "tipo": "inicio", "nome": "Claude", "abas": ["Chat", "Code"], "trocar": 12.9, "comando": "> claude" }
+        ] },
+        { "tipo": "janela", "t": 13.8, "ate": 16.2, "x": 290, "y": 820, "escala": 0.56, "titulo": "Claude", "itens": [
+          { "t": 13.8, "tipo": "inicio", "nome": "Claude", "abas": ["Chat", "Code"], "ativa": 1 }
+        ] },
+        { "tipo": "janela", "t": 14.0, "ate": 16.2, "x": 790, "y": 820, "escala": 0.56, "titulo": "ChatGPT", "itens": [
+          { "t": 14.0, "tipo": "inicio", "icone": "◎", "nome": "ChatGPT", "abas": ["Chat", "Codex"], "ativa": 1 }
+        ] },
+        { "tipo": "texto", "t": 14.0, "ate": 16.2, "x": 290, "y": 1080, "texto": "Claude", "tamanho": 36, "peso": 700, "espaco": 0 },
+        { "tipo": "texto", "t": 14.1, "ate": 16.2, "x": 290, "y": 1125, "texto": "*aba Code*", "tamanho": 28, "espaco": 0 },
+        { "tipo": "texto", "t": 14.2, "ate": 16.2, "x": 790, "y": 1080, "texto": "ChatGPT", "tamanho": 36, "peso": 700, "espaco": 0 },
+        { "tipo": "texto", "t": 14.7, "ate": 16.2, "x": 790, "y": 1125, "texto": "*Codex*", "tamanho": 28, "espaco": 0 },
+        { "tipo": "marca", "t": 14.9, "ate": 16.2, "x": 520, "y": 640, "entrada": "pop" },
+        { "tipo": "marca", "t": 15.1, "ate": 16.2, "x": 1020, "y": 640, "entrada": "pop" },
+        { "tipo": "imagens", "t": 16.4, "ate": 17.6, "largura": 240, "altura": 340, "itens": [
+          { "t": 16.4, "marca": { "t": 16.9, "simbolo": "✓" } },
+          { "t": 16.5, "marca": { "t": 17.0, "simbolo": "✓" } },
+          { "t": 16.6, "marca": { "t": 17.1, "simbolo": "✓" } }
+        ] },
+        { "tipo": "janela", "t": 17.8, "ate": 22.9, "titulo": "Claude", "itens": [
+          { "t": 18.0, "tipo": "usuario", "thumb": true, "texto": "edita esse vídeo" },
+          { "t": 18.9, "tipo": "ia", "duvida": true },
+          { "t": 20.1, "tipo": "linha", "icone": "✂", "texto": "onde cortar?" },
+          { "t": 21.1, "tipo": "linha", "icone": "Aa", "texto": "que legenda?" },
+          { "t": 22.1, "tipo": "linha", "icone": "♪", "texto": "que som?" }
+        ] },
+        { "tipo": "imagens", "t": 23.1, "pb": true, "largura": 250, "altura": 360, "itens": [
+          { "t": 23.1, "marca": { "t": 24.2, "simbolo": "×" } },
+          { "t": 23.3, "marca": { "t": 24.4, "simbolo": "×" } },
+          { "t": 23.9 }
+        ] }
+      ]
+    },
+    {
+      "inicio": 25, "fim": 42.3, "tema": "claro",
+      "passo": { "n": 2, "total": 3, "titulo": "Instale o EDIT IA", "tTitulo": 25.6 },
+      "elementos": [
+        { "tipo": "arquivo", "t": 25.8, "ate": 27.1, "y": 820, "entrada": "zoom", "nome": "EDIT-IA-PRO.zip", "selo": "IA", "destacar": 26.3 },
+        { "tipo": "janela", "t": 27.3, "ate": 30.0, "titulo": "Claude", "campo": { "placeholder": "Digite aqui..." }, "itens": [
+          { "t": 28.0, "tipo": "chip", "texto": "EDIT-IA-PRO.zip" },
+          { "t": 28.8, "tipo": "colar", "rotulo": "Cole na sua IA", "rodape": "Claude Code ou Codex", "clique": 29.6,
+            "texto": "Oi! Comprei o *EDIT IA PRO* e quero instalar neste computador. Segue o INSTALAR.md do começo ao fim. Eu não sei programar: faz tudo você e fala comigo em português simples." }
+        ] },
+        { "tipo": "terminal", "t": 30.2, "ate": 35.2, "y": 760, "titulo": "EDIT-IA-PRO · claude", "boasVindas": "✻ Welcome to *Claude Code*",
+          "linhas": [
+            { "t": 30.4, "texto": "> Oi! Comprei o EDIT IA PRO e quero instalar…" },
+            { "t": 30.8, "texto": "Instalando o EDIT IA PRO…", "forte": true, "faisca": true }
+          ],
+          "progresso": { "t": 30.8, "ate": 41.5 } },
+        { "tipo": "lista", "t": 31.9, "ate": 35.2, "y": 1100, "itens": [
+          { "t": 31.9, "icone": "✂", "texto": "Cortar" },
+          { "t": 33.2, "icone": "Aa", "texto": "Legendar" },
+          { "t": 33.9, "icone": "✦", "texto": "Animar" },
+          { "t": 34.6, "icone": "♪", "texto": "Trilha" }
+        ] },
+        { "tipo": "dialogo", "t": 35.4, "ate": 38.7, "y": 820, "entrada": "zoom", "app": "Claude Code", "titulo": "Posso rodar o instalador?",
+          "comando": "uv run python instalar.py", "descricao": "Instala o EDIT IA PRO neste computador", "clique": 38.2 },
+        { "tipo": "pilula", "t": 38.9, "y": 760, "entrada": "zoom", "prefixo": "≈", "texto": "15 minutos", "sub": { "t": 40.2, "texto": "*1×* uma vez só" } },
+        { "tipo": "senha", "t": 40.8, "y": 1060, "negar": 41.5 }
+      ]
+    },
+    {
+      "inicio": 42.3, "fim": 55.6, "tema": "claro",
+      "passo": { "n": 3, "total": 3, "titulo": "Mande o seu vídeo", "tTitulo": 43.0 },
+      "elementos": [
+        { "tipo": "janela", "t": 42.6, "ate": 46.6, "y": 1000, "titulo": "Claude",
+          "campo": { "placeholder": "Peça ao Claude...", "texto": "edita esse vídeo pra reels", "t": 45.1, "cps": 18, "enviar": 46.1 },
+          "itens": [
+            { "t": 43.2, "tipo": "usuario", "lado": "esq", "thumb": true, "texto": "gravacao.mov" },
+            { "t": 46.1, "tipo": "usuario", "texto": "edita esse vídeo pra reels" }
+          ] },
+        { "tipo": "onda", "t": 46.7, "ate": 49.6, "y": 760, "rotulo": "gravacao.mov", "marcar": 47.1, "cortar": 47.8 },
+        { "tipo": "tomadas", "t": 48.0, "ate": 49.6, "y": 960, "entrada": "nenhum", "itens": ["Tomada 1", "Tomada 2", "Tomada 3"], "escolher": { "t": 48.8, "indice": 2 } },
+        { "tipo": "celular", "t": 49.7, "ate": 51.5, "x": 360, "y": 900 },
+        { "tipo": "lista", "t": 50.0, "ate": 51.5, "x": 790, "y": 860, "escala": 0.72, "itens": [
+          { "t": 50.0, "icone": "Aa", "texto": "Legenda" },
+          { "t": 50.5, "icone": "✦", "texto": "Animação" },
+          { "t": 51.0, "icone": "♪", "texto": "Trilha" }
+        ] },
+        { "tipo": "celular", "t": 51.7, "x": 340, "y": 920 },
+        { "tipo": "painel", "t": 51.9, "x": 790, "y": 880, "titulo": "Corte pronto", "sub": "Reels · 9:16",
+          "cliques": [ { "t": 54.0, "indice": 0 }, { "t": 55.0, "indice": 1 } ] }
+      ]
+    },
+    {
+      "inicio": 55.6, "fim": 60, "tema": "claro",
+      "elementos": [
+        { "tipo": "celular", "t": 55.7, "x": 360, "y": 900 },
+        { "tipo": "botao", "t": 55.8, "x": 790, "y": 880, "entrada": "zoom", "texto": "Saiba mais", "clique": 56.6 },
+        { "tipo": "selo", "t": 57.4, "x": 790, "y": 990, "entrada": "pop", "texto": "a IA editando" }
+      ]
+    }
+  ]
+}

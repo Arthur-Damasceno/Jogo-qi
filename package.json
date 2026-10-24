@@ -7,7 +7,9 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
-    "icons": "node scripts/make-icons.mjs"
+    "icons": "node scripts/make-icons.mjs",
+    "video": "node video/render.mjs",
+    "video:previa": "node video/preview.mjs"
   },
   "dependencies": {
     "react": "^18.3.1",

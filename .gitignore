@@ -4,3 +4,10 @@ dev-dist/
 *.local
 .DS_Store
 tsconfig.tsbuildinfo
+
+# vídeos gerados e narrações
+video/**/*.mp4
+video/**/*.mp3
+video/**/*.wav
+video/**/*.png
+__pycache__/
